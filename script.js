@@ -325,7 +325,7 @@ function filterQuestions() {
 // Section Content Loading
 async function loadSectionContent(sectionId) {
     try {
-        const response = await fetch(`/content/${sectionId}.md`);
+        const response = await fetch(`content/${sectionId}.md`);
         if (!response.ok) throw new Error('Content not found');
         
         const markdown = await response.text();
@@ -496,7 +496,7 @@ function displaySearchResults(results, query) {
 async function loadContent(sectionId) {
     console.log('Loading content for section:', sectionId);
     try {
-        const response = await fetch(`/content/${sectionId}.md`);
+        const response = await fetch(`content/${sectionId}.md`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -525,7 +525,7 @@ async function loadContent(sectionId) {
 // Function to download content
 async function downloadContent(sectionId) {
     try {
-        const response = await fetch(`/content/${sectionId}.md`);
+        const response = await fetch(`content/${sectionId}.md`);
         if (!response.ok) throw new Error('Content not found');
         
         const markdown = await response.text();
