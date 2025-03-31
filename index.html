@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS SAA-C03 Study Materials</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fab fa-aws"></i>
+                <span>AWS SAA-C03 Study Guide</span>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search topics...">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <nav class="sidebar">
+                <ul>
+                    <li><a href="#study-guide" class="active"><i class="fas fa-book"></i> Study Guide</a></li>
+                    <li><a href="#practice-questions"><i class="fas fa-question-circle"></i> Practice Questions</a></li>
+                    <li><a href="#tricky-questions"><i class="fas fa-exclamation-triangle"></i> Tricky Questions & Gotchas</a></li>
+                    <li><a href="#strategies"><i class="fas fa-lightbulb"></i> Question-Solving Strategies</a></li>
+                    <li><a href="#ultimate-guide"><i class="fas fa-star"></i> Ultimate Exam Guide</a></li>
+                </ul>
+            </nav>
+
+            <div class="content">
+                <section id="study-guide" class="section active">
+                    <h1>Study Guide</h1>
+                    <div class="content-wrapper">
+                        <div class="progress-bar">
+                            <div class="progress" id="studyProgress"></div>
+                        </div>
+                        <div class="markdown-content">
+                            <!-- Content will be loaded here -->
+                        </div>
+                        <div class="interactive-elements">
+                            <div class="quick-quiz">
+                                <h3>Quick Quiz</h3>
+                                <div id="quizContainer"></div>
+                            </div>
+                            <div class="key-points">
+                                <h3>Key Points</h3>
+                                <div id="keyPointsContainer"></div>
+                            </div>
+                        </div>
+                        <div class="download-section">
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i> Download as Markdown
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="practice-questions" class="section">
+                    <h1>Practice Questions</h1>
+                    <div class="content-wrapper">
+                        <div class="question-filters">
+                            <select id="domainFilter">
+                                <option value="">All Domains</option>
+                                <option value="resilient">Resilient Architectures</option>
+                                <option value="high-performing">High-Performing Architectures</option>
+                                <option value="secure">Secure Applications</option>
+                                <option value="cost-optimized">Cost-Optimized Architectures</option>
+                            </select>
+                            <select id="difficultyFilter">
+                                <option value="">All Difficulties</option>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div class="markdown-content">
+                            <!-- Content will be loaded here -->
+                        </div>
+                        <div id="practiceQuestionsContainer">
+                            <!-- Questions will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tricky-questions" class="section">
+                    <h1>Tricky Questions & Gotchas</h1>
+                    <div class="content-wrapper">
+                        <div class="markdown-content">
+                            <!-- Content will be loaded here -->
+                        </div>
+                        <div class="interactive-elements">
+                            <div class="flashcards">
+                                <h3>Flashcards</h3>
+                                <div id="flashcardsContainer"></div>
+                            </div>
+                            <div class="common-mistakes">
+                                <h3>Common Mistakes</h3>
+                                <div id="mistakesContainer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="strategies" class="section">
+                    <h1>Question-Solving Strategies</h1>
+                    <div class="content-wrapper">
+                        <div class="markdown-content">
+                            <!-- Content will be loaded here -->
+                        </div>
+                        <div class="interactive-elements">
+                            <div class="strategy-timeline">
+                                <h3>Strategy Timeline</h3>
+                                <div id="timelineContainer"></div>
+                            </div>
+                            <div class="strategy-tips">
+                                <h3>Pro Tips</h3>
+                                <div id="tipsContainer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ultimate-guide" class="section">
+                    <h1>Ultimate Exam Guide</h1>
+                    <div class="content-wrapper">
+                        <div class="markdown-content">
+                            <!-- Content will be loaded here -->
+                        </div>
+                        <div class="interactive-elements">
+                            <div class="exam-checklist">
+                                <h3>Pre-Exam Checklist</h3>
+                                <div id="checklistContainer"></div>
+                            </div>
+                            <div class="exam-day-tips">
+                                <h3>Exam Day Tips</h3>
+                                <div id="examTipsContainer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AWS SAA-C03 Study Materials. All rights reserved.</p>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
