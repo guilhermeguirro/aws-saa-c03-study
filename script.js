@@ -325,7 +325,8 @@ function filterQuestions() {
 // Section Content Loading
 async function loadSectionContent(sectionId) {
     try {
-        const response = await fetch(`content/${sectionId}.md`);
+        const baseUrl = getBaseUrl();
+        const response = await fetch(`${baseUrl}content/${sectionId}.md`);
         if (!response.ok) throw new Error('Content not found');
         
         const markdown = await response.text();
@@ -496,7 +497,8 @@ function displaySearchResults(results, query) {
 async function loadContent(sectionId) {
     console.log('Loading content for section:', sectionId);
     try {
-        const response = await fetch(`content/${sectionId}.md`);
+        const baseUrl = getBaseUrl();
+        const response = await fetch(`${baseUrl}content/${sectionId}.md`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -525,7 +527,8 @@ async function loadContent(sectionId) {
 // Function to download content
 async function downloadContent(sectionId) {
     try {
-        const response = await fetch(`content/${sectionId}.md`);
+        const baseUrl = getBaseUrl();
+        const response = await fetch(`${baseUrl}content/${sectionId}.md`);
         if (!response.ok) throw new Error('Content not found');
         
         const markdown = await response.text();
@@ -542,4 +545,11 @@ async function downloadContent(sectionId) {
         console.error('Error downloading content:', error);
         alert('Error downloading content. Please try again later.');
     }
+}
+
+// Add this at the top of the file
+function getBaseUrl() {
+    // Get the base URL from the <base> tag or default to '/aws-saa-c03-study/'
+    const baseTag = document.querySelector('base');
+    return baseTag ? baseTag.getAttribute('href') : '/aws-saa-c03-study/';
 } 
