@@ -326,7 +326,12 @@ function filterQuestions() {
 async function loadSectionContent(sectionId) {
     try {
         const baseUrl = getBaseUrl();
-        const response = await fetch(`${baseUrl}content/${sectionId}.md`);
+        const contentPath = `${baseUrl}content/${sectionId}.md`;
+        console.log('Attempting to fetch section content from:', contentPath);
+        
+        const response = await fetch(contentPath);
+        console.log('Section response status:', response.status);
+        
         if (!response.ok) throw new Error('Content not found');
         
         const markdown = await response.text();
@@ -334,6 +339,7 @@ async function loadSectionContent(sectionId) {
         
         // Convert markdown to HTML using marked library
         content.innerHTML = marked.parse(markdown);
+        console.log('Section content rendered successfully');
 
         // Initialize section-specific features
         switch(sectionId) {
@@ -345,10 +351,11 @@ async function loadSectionContent(sectionId) {
                 break;
         }
     } catch (error) {
-        console.error('Error loading content:', error);
+        console.error('Error loading section content:', error);
         const content = document.querySelector(`#${sectionId} .markdown-content`);
         if (content) {
-            content.innerHTML = '<p>Error loading content. Please try again later.</p>';
+            content.innerHTML = `<p>Error loading content: ${error.message}</p>
+                               <p>Please try refreshing the page. If the error persists, contact support.</p>`;
         }
     }
 }
@@ -498,14 +505,20 @@ async function loadContent(sectionId) {
     console.log('Loading content for section:', sectionId);
     try {
         const baseUrl = getBaseUrl();
-        const response = await fetch(`${baseUrl}content/${sectionId}.md`);
+        const contentPath = `${baseUrl}content/${sectionId}.md`;
+        console.log('Attempting to fetch content from:', contentPath);
+        
+        const response = await fetch(contentPath);
+        console.log('Response status:', response.status);
+        console.log('Response headers:', [...response.headers.entries()]);
+        
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        console.log('Content fetched successfully');
         
         const markdown = await response.text();
-        console.log('Markdown content loaded:', markdown.substring(0, 100) + '...');
+        console.log('Content length:', markdown.length);
+        console.log('Content preview:', markdown.substring(0, 100));
         
         const content = document.querySelector(`#${sectionId} .markdown-content`);
         if (!content) {
@@ -519,7 +532,8 @@ async function loadContent(sectionId) {
         console.error('Error loading content:', error);
         const content = document.querySelector(`#${sectionId} .markdown-content`);
         if (content) {
-            content.innerHTML = `<p>Error loading content: ${error.message}</p>`;
+            content.innerHTML = `<p>Error loading content: ${error.message}</p>
+                               <p>Please try refreshing the page. If the error persists, contact support.</p>`;
         }
     }
 }
@@ -528,7 +542,12 @@ async function loadContent(sectionId) {
 async function downloadContent(sectionId) {
     try {
         const baseUrl = getBaseUrl();
-        const response = await fetch(`${baseUrl}content/${sectionId}.md`);
+        const contentPath = `${baseUrl}content/${sectionId}.md`;
+        console.log('Attempting to download content from:', contentPath);
+        
+        const response = await fetch(contentPath);
+        console.log('Download response status:', response.status);
+        
         if (!response.ok) throw new Error('Content not found');
         
         const markdown = await response.text();
@@ -541,6 +560,7 @@ async function downloadContent(sectionId) {
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
+        console.log('Content downloaded successfully');
     } catch (error) {
         console.error('Error downloading content:', error);
         alert('Error downloading content. Please try again later.');
@@ -551,5 +571,7 @@ async function downloadContent(sectionId) {
 function getBaseUrl() {
     // Get the base URL from the <base> tag or default to '/aws-saa-c03-study/'
     const baseTag = document.querySelector('base');
-    return baseTag ? baseTag.getAttribute('href') : '/aws-saa-c03-study/';
+    const baseUrl = baseTag ? baseTag.getAttribute('href') : '/aws-saa-c03-study/';
+    console.log('Base URL:', baseUrl);
+    return baseUrl;
 } 
